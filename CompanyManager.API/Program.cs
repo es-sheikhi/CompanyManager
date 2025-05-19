@@ -1,3 +1,7 @@
+using CompanyManager.Application.Repositories;
+using CompanyManager.Infrastructure.Data;
+using CompanyManager.Infrastructure.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<CompanyDbContext>();
+
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
